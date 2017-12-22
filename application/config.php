@@ -17,7 +17,7 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -56,11 +56,11 @@ return [
     // +----------------------------------------------------------------------
 
     // 默认模块名
-    'default_module'         => 'index',
+    'default_module'         => 'admin',
     // 禁止访问模块
     'deny_module_list'       => ['common'],
     // 默认控制器名
-    'default_controller'     => 'Index',
+    'default_controller'     => 'Login',
     // 默认操作名
     'default_action'         => 'index',
     // 默认验证器
@@ -237,5 +237,22 @@ return [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,
+    ],
+    // 验证码配置
+    'captcha'  => [
+        // 验证码字符集合
+        'codeSet'  => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY', 
+        // 验证码字体大小(px)
+        'fontSize' => 18, 
+        // 是否画混淆曲线
+        'useCurve' => false, 
+         // 验证码图片高度
+        'imageH'   => 44,
+        // 验证码图片宽度
+        'imageW'   => 150, 
+        // 验证码位数
+        'length'   => 5, 
+        // 验证成功后是否重置        
+        'reset'    => true
     ],
 ];

@@ -14,23 +14,24 @@
             <h1 class="page-header">{$title}</h1>
             <div class="form-group">
               <label for="article-title" class="sr-only">标题</label>
-              <input type="text" id="article-title" name="title" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off">
+              <input type="hidden" name="id" value="{$article.article_id}">
+              <input type="text" id="article-title" name="title" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off" value="{$article.article_name}">
             </div>
             <div class="form-group">
               <label for="article-content" class="sr-only">内容</label>
-              <script id="article-content" name="content" type="text/plain"></script>
+              <script id="article-content" name="content" type="text/plain">{$article.article_content}</script>
             </div>
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>关键字</span></h2>
               <div class="add-article-box-content">
-              	<input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off">
+              	<input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off" value="{$article.keywords}">
                 <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
               </div>
             </div>
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>描述</span></h2>
               <div class="add-article-box-content">
-              	<textarea class="form-control" name="describe" autocomplete="off"></textarea>
+              	<textarea class="form-control" name="describe" autocomplete="off">{$article.description}</textarea>
                 <span class="prompt-text">描述是可选的手工创建的内容总结，并可以在网页描述中使用</span>
               </div>
             </div>
@@ -44,7 +45,7 @@
                   {volist name="tab" id="data"}
                   <li>
                     <label>
-                      <input name="category" type="radio" value="{$data.id}">
+                      <input name="category" type="radio" value="{$data.id}" {if condition="$article.tab_id eq $data.id"}checked{/if}>
                       {$data.sort_article_name} <em class="hidden-md">( 栏目ID: <span>{$data.id}</span> )</em></label>
                   </li>
                   {/volist}
@@ -54,13 +55,13 @@
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>标签</span></h2>
               <div class="add-article-box-content">
-                <input type="text" class="form-control" placeholder="输入新标签" name="tags" autocomplete="off">
+                <input type="text" class="form-control" placeholder="输入新标签" name="tags" autocomplete="off" value="{$article.tags}">
                 <span class="prompt-text">多个标签请用英文逗号,隔开</span> </div>
             </div>
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>标题图片</span></h2>
               <div class="add-article-box-content">
-                <input type="text" class="form-control" placeholder="点击按钮选择图片" id="pictureUpload" name="titlepic" autocomplete="off">
+                <input type="text" class="form-control" placeholder="点击按钮选择图片" id="pictureUpload" name="titlepic" autocomplete="off" value="{$article.image_url}">
               </div>
               <div class="add-article-box-footer">
                 <button class="btn btn-default" type="button" ID="upImage">选择</button>
@@ -70,8 +71,8 @@
               <h2 class="add-article-box-title"><span>发布</span></h2>
               <div class="add-article-box-content">
               	<p><label>状态：</label><span class="article-status-display">未发布</span></p>
-                <p><label>公开度：</label><input type="radio" name="visibility" value="0" checked/>公开 <input type="radio" name="visibility" value="1" />加密</p>
-                <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" type="datetime" name="time" value="2016-01-09 17:29:37" /></span></p>
+                <p><label>公开度：</label><input type="radio" name="visibility" value="0" {if condition="$article.lock eq 0"}checked{/if}/>公开 <input type="radio" name="visibility" value="1" {if condition="$article.lock eq 1"}checked{/if}/>加密</p>
+                <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" type="datetime" name="time" value="{$article.article_time|date='Y-m-d h:i:s',###}" /></span></p>
               </div>
               <div class="add-article-box-footer">
                 <button class="btn btn-primary" type="submit" name="submit">发布</button>

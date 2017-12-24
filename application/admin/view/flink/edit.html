@@ -1,0 +1,81 @@
+{include file='common:header' /}
+
+<body class="user-select">
+<section class="container-fluid">
+  <header>
+    {:widget('Layout/nav')}
+  </header>
+  <div class="row">
+    {:widget('Layout/menu', ['name'=>'others'])}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+      <div class="row">
+        <form action="{:url('/admin/Flink/update')}" method="post" class="add-flink-form" autocomplete="off" draggable="false">
+          <div class="col-md-9">
+            <h1 class="page-header">修改友情链接</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>名称</span></h2>
+              <div class="add-article-box-content">
+              	<input type="hidden" name="id" value="{$link.link_id}">
+                <input type="text" id="flink-name" name="name" class="form-control" placeholder="在此处输入名称" required autofocus autocomplete="off" value="{$link.link_name}">
+                <span class="prompt-text">例如：异清轩技术博客</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>WEB地址</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" id="flink-url" name="url" class="form-control" placeholder="在此处输入URL地址" required autocomplete="off" value="{$link.link_url}">
+                <span class="prompt-text">例子：<code>http://www.ylsat.com/</code>——不要忘了<code>http://</code></span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>图像地址</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" id="flink-imgurl" name="imgurl" class="form-control" placeholder="在此处输入图像地址" required autocomplete="off" value="{$link.link_logo}">
+                <span class="prompt-text">图像地址是可选的，可以为网站LOGO地址等</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>描述</span></h2>
+              <div class="add-article-box-content">
+                <textarea class="form-control" name="describe" autocomplete="off">{$link.description}</textarea>
+                <span class="prompt-text">描述是可选的手工创建的内容总结</span> </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h1 class="page-header">操作</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>保存</span></h2>
+              <div class="add-article-box-content">
+                <p>
+                  <label>状态：</label>
+                  <span class="article-status-display">{if condition="$link.status eq 1"}增加{/if}</span></p>
+                <p><label>target：</label><input type="radio" name="target" value="0" {if condition="$link.opentype eq 0"}checked{/if} />_blank&nbsp;&nbsp;<input type="radio" name="target" value="1" {if condition="$link.opentype eq 1"}checked{/if} />_self&nbsp;&nbsp;<input type="radio" name="target" value="2"  {if condition="$link.opentype eq 2"}checked{/if}/>_top</p>
+                <p><label>
+                <p>
+                  <label>增加于：</label>
+                  <span class="article-time-display">
+                  <input style="border: none;" type="datetime" name="time" value="{$time|date='Y-m-d h:i:s',###}" />
+                  </span></p>
+              </div>
+              <div class="add-article-box-footer">
+                <button class="btn btn-primary" type="submit" name="submit">更新</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 导入modal -->
+{:widget('Layout/modal')}
+<!--右键菜单列表-->
+<div id="rightClickMenu">
+  <ul class="list-group rightClickMenuList">
+    <li class="list-group-item disabled">欢迎访问异清轩博客</li>
+    <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
+    <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
+    <li class="list-group-item"><span>系统：</span>Windows10 </li>
+    <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
+  </ul>
+</div>
+{include file='common:commonJs' /}
+</body>
+</html>

@@ -13,7 +13,8 @@ class Notice extends Controller {
 	}
 	public function index () {
 		$notice = Db::table('notice')->paginate(5);
-		return $this->fetch('index', ['notice'=>$notice]);
+		$count = Db::table('notice')->count();
+		return $this->fetch('index', ['notice'=>$notice, 'count'=>$count]);
 	}
 	public function add (Request $request) {
 		if ( !$request->isPOST() ) {
@@ -69,5 +70,20 @@ class Notice extends Controller {
 			$this->error("更新失败");
 		}
 		return $this->success("更新成功", 'admin/Notice/index');
+	}
+
+	public function del (Request $request) {
+		if ( !$request->isPOST() ) {
+			$this->error("非法操作");
+		}
+		$id = input("post.id");
+		$result = Db::table('notice')->where('Id',$id)->delete();
+		$data['flag'] = true;
+		if ( $result ) {
+			$data['msg'] = "删除成功！";
+			return $data;
+		}
+		$data['msg'] = '删除失败！';
+		return $data; 
 	}
 }

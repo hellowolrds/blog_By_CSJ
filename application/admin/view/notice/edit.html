@@ -1,0 +1,81 @@
+{include file='common:header' /}
+
+<body class="user-select">
+<section class="container-fluid">
+  <header>
+    {:widget('Layout/nav')}
+  </header>
+  <div class="row">
+    {:widget('Layout/menu', ['name'=>'notice'])}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+      <div class="row">
+        <form action="{:url('/admin/Notice/update')}" method="post" class="add-article-form">
+          <div class="col-md-9">
+            <h1 class="page-header">撰写新公告</h1>
+            <div class="form-group">
+              <label for="article-title" class="sr-only">标题</label>
+              <input type="hidden" name="id" value="{$notice.Id}">
+              <input type="text" id="article-title" name="title" class="form-control" placeholder="在此处输入标题" value={$notice.title} required autofocus autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="article-content" class="sr-only">内容</label>
+              <textarea id="article-content" name="content" class="form-control">{$notice.content}</textarea> 
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>关键字</span></h2>
+              <div class="add-article-box-content">
+              	<input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off" value="{$notice.key}">
+                <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
+              </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>描述</span></h2>
+              <div class="add-article-box-content">
+              	<textarea class="form-control" name="describe" autocomplete="off">{$notice.description}</textarea>
+                <span class="prompt-text">描述是可选的手工创建的内容总结，并可以在网页描述中使用</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h1 class="page-header">操作</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>发布</span></h2>
+              <div class="add-article-box-content">
+              	<p><label>状态：</label><span class="article-status-display">未发布</span></p>
+                <p><label>公开度：</label><input type="radio" name="visibility" value="0" {if condition="$notice.lock eq 0"}checked{/if}/>公开 <input type="radio" name="visibility" value="1" {if condition="$notice.lock eq 1"}checked{/if}/>加密</p>
+                <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" type="datetime" name="time" value="{$time|date='Y-m-d h:i:s',###}" /></span></p>
+              </div>
+              <div class="add-article-box-footer">
+                <button class="btn btn-primary" type="submit" name="submit">发布</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 导入modal -->
+{:widget('Layout/modal')}
+<!--右键菜单列表-->
+<div id="rightClickMenu">
+  <ul class="list-group rightClickMenuList">
+    <li class="list-group-item disabled">欢迎访问异清轩博客</li>
+    <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
+    <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
+    <li class="list-group-item"><span>系统：</span>Windows10 </li>
+    <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
+  </ul>
+</div>
+{include file='common:commonJs' /}
+<!--summernote富文本编辑器-->
+<link rel="stylesheet" type="text/css" href="/static/lib/summernote/summernote.css">
+<script src="/static/lib/summernote/summernote.js"></script> 
+<script src="/static/lib/summernote/lang/summernote-zh-CN.js"></script> 
+<script>
+$('#article-content').summernote({
+	lang: 'zh-CN'
+});
+</script>
+</body>
+</html>

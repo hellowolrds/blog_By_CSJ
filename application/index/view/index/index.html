@@ -85,9 +85,9 @@
 							<a href="#" class="blog-img"><img src="{$data.image_url}" class="img-responsive" alt="{$data.article_name}"></a>
 							<div class="desc">
 								<h3><a href="#">{$data.article_name}</a></h3>
-								<span><small>by Admin </small> / <small> {$data.tags} </small> / <small> <i class="icon-comment"></i> 14</small></span>
+								<span><small>by Admin </small> / <small> {$data.tags} </small> / <small> <i class="icon-comment"></i> {$data.article_click}</small></span>
 								<p>{$data.article_time|date='Y-m-d h:i:s',###}</p>
-								<a href="#" class="lead">阅读 <i class="icon-arrow-right3"></i></a>
+								<a href="{:url('/index/blog/detail', ['id'=>$data.article_id])}" class="lead">阅读 <i class="icon-arrow-right3"></i></a>
 							</div>
 						</div>
 					</div>

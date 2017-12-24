@@ -19,6 +19,8 @@ class Index extends Controller {
 		$username = Session::get('username');
 		$sysos = $_SERVER["SERVER_SOFTWARE"];
 		$sysversion = PHP_VERSION;
-		return $this->fetch('index', ['article'=>$article, 'flink'=>$flink, 'username'=>$username, 'time'=>time(), 'userCount'=>$userCount, 'sysos'=>$sysos,'sysversion'=>$sysversion]);
+
+		$visitor = Db::table('visitor')->count();
+		return $this->fetch('index', ['article'=>$article, 'flink'=>$flink, 'username'=>$username, 'time'=>time(), 'userCount'=>$userCount, 'sysos'=>$sysos,'sysversion'=>$sysversion, 'visitor'=>$visitor]);
 	}
 }

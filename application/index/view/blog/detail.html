@@ -1,7 +1,7 @@
 {:widget('Layout/head')}
 <div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-		{:widget('Layout/menu', ['name'=>'index'])}
+		{:widget('Layout/menu', ['name'=>'blog'])}
 
 		<div id="fh5co-main">
 			<div class="fh5co-narrow-content">
@@ -10,7 +10,7 @@
 				</h2>
 				<div class="desc animate-box" data-animate-effect="fadeInLeft">
 					<span>{$blog.article_time|date='Y-m-d h:i:s',###}</span>
-					<span><small>by Admin </small> / <small> {$blog.tags} </small> / <small> <i class="icon-comment"></i> 14</small></span>
+					<span><small>by Admin </small> / <small> {$blog.tags} </small> / <small> <i class="icon-comment"></i> {$blog.article_click}</small></span>
 				</div>
 				<div class="row row-bottom-padded-md animate-box" data-animate-effect="fadeInLeft" style="background-color: #fff;padding: 15px;margin-top: 15px;">
 					{$blog.article_content}

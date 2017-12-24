@@ -15,6 +15,8 @@ class Blog extends Controller
 
     public function detail($id) {
     	$blog = Db::table('article')->where('article_id', $id)->find();
+        $click = $blog['article_click'] + 1;
+        Db::table('article')->where('article_id', $id)->update(['article_click'=>$click]);
     	return $this->fetch('detail', ['blog'=>$blog]);
     }
 }

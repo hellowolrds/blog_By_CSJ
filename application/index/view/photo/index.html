@@ -1,0 +1,25 @@
+	{:widget('Layout/head')}
+	<div id="fh5co-page">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		{:widget('Layout/menu', ['name'=>'photo'])}
+
+		<div id="fh5co-main">
+			<div class="fh5co-narrow-content">
+				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Portfolio</h2>
+				<div class="row row-bottom-padded-md">
+					{volist name="photos" id="data"}
+					<div class="col-md-3 col-sm-6 col-padding text-center animate-box">
+						<a href="#" class="work image-popup" style="background-image: url({$data.photo_src});">
+							<div class="desc">
+								<h3>{$data.photo_name}</h3>
+								<span>{$data.photo_description}</span>
+							</div>
+						</a>
+					</div>
+					{/volist}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{include file='common:commonJs' /}

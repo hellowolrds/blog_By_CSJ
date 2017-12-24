@@ -1,0 +1,118 @@
+	{:widget('Layout/head')}
+	<div id="fh5co-page">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		{:widget('Layout/menu', ['name'=>'index'])}
+
+		<div id="fh5co-main">
+			<aside id="fh5co-hero" class="js-fullheight">
+				<div class="flexslider js-fullheight">
+					<ul class="slides">
+					{volist name="banner" id="data"}
+				   	<li style="background-image: url({$data.banner_image});">
+				   		<div class="overlay"></div>
+				   		<div class="container-fluid">
+				   			<div class="row">
+					   			<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+					   				<div class="slider-text-inner">
+					   					<h1>{$data.article_name}</h1>
+											<p><a class="btn btn-primary btn-demo popup-vimeo" href="{:url('/index/blog/detail', ['id'=>$data.article_id])}"> <i class="icon-monitor"></i> 阅读</a> <a class="btn btn-primary btn-learn">点赞<i class="icon-arrow-right3"></i></a></p>
+					   				</div>
+					   			</div>
+					   		</div>
+				   		</div>
+				   	</li>
+				   	{/volist}
+				  	</ul>
+			  	</div>
+			</aside>
+			
+			<div class="fh5co-narrow-content">
+				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">个人技术</h2>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+							<div class="fh5co-icon">
+								<i class="icon-settings"></i>
+							</div>
+							<div class="fh5co-text">
+								<h3>html5css3</h3>
+								<p>熟练使用html5css3构建web界面，快速还原设计稿</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+							<div class="fh5co-icon">
+								<i class="icon-search4"></i>
+							</div>
+							<div class="fh5co-text">
+								<h3>javasript</h3>
+								<p>熟练掌握原生JavaScript操作DOM，以及面向对象思维</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+							<div class="fh5co-icon">
+								<i class="icon-paperplane"></i>
+							</div>
+							<div class="fh5co-text">
+								<h3>php</h3>
+								<p>熟悉php基本语法和sql语句，熟练使用thinkphp框架</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+							<div class="fh5co-icon">
+								<i class="icon-params"></i>
+							</div>
+							<div class="fh5co-text">
+								<h3>mysql</h3>
+								<p>熟悉mysql服务器的搭建，以及常用的sql命令</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="fh5co-narrow-content">
+				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">最近的博客</h2>
+				<div class="row row-bottom-padded-md">
+					{volist name="blog" id="data"}
+					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+						<div class="blog-entry">
+							<a href="#" class="blog-img"><img src="{$data.image_url}" class="img-responsive" alt="{$data.article_name}"></a>
+							<div class="desc">
+								<h3><a href="#">{$data.article_name}</a></h3>
+								<span><small>by Admin </small> / <small> {$data.tags} </small> / <small> <i class="icon-comment"></i> 14</small></span>
+								<p>{$data.article_time|date='Y-m-d h:i:s',###}</p>
+								<a href="#" class="lead">阅读 <i class="icon-arrow-right3"></i></a>
+							</div>
+						</div>
+					</div>
+					{/volist}
+				</div>
+			</div>
+
+			<div class="fh5co-narrow-content" style="padding: 0;">
+				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">相册墙</h2>
+				<div class="row row-bottom-padded-md">
+					{volist name="photos" id="data"}
+					<div class="col-md-3 col-sm-6 col-padding text-center animate-box">
+						<a href="#" class="work image-popup" style="background-image: url({$data.photo_src});">
+							<div class="desc">
+								<h3>{$data.photo_name}</h3>
+								<span>{$data.photo_description}</span>
+							</div>
+						</a>
+					</div>
+					{/volist}
+				</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	{include file='common:commonJs' /}

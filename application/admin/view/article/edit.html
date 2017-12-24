@@ -68,6 +68,15 @@
               </div>
             </div>
             <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>banner图片</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" class="form-control" placeholder="点击按钮选择图片" id="pictureUpload" name="banner" autocomplete="off">
+              </div>
+              <div class="add-article-box-footer">
+                <button class="btn btn-default" type="button" ID="upImage1">选择</button>
+              </div>
+            </div>
+            <div class="add-article-box">
               <h2 class="add-article-box-title"><span>发布</span></h2>
               <div class="add-article-box-content">
               	<p><label>状态：</label><span class="article-status-display">未发布</span></p>
@@ -130,6 +139,11 @@ $(function () {
 });
 //弹出图片上传的对话框
 $('#upImage').click(function () {
+    var myImage = _uploadEditor.getDialog("insertimage");
+    myImage.open();
+});
+//弹出图片上传的对话框
+$('#upImage1').click(function () {
     var myImage = _uploadEditor.getDialog("insertimage");
     myImage.open();
 });

@@ -33,6 +33,7 @@ class Article extends Controller {
 		$tags = input('post.tags');
 		$titlepic = input('post.titlepic');
 		$lock = input('post.visibility');
+		$banner = input('post.banner');
 
 		$data['article_name'] = $title;
 		$data['article_time'] = time();
@@ -46,6 +47,7 @@ class Article extends Controller {
 		$data['lock'] = $lock;
 		$data['keywords'] = $keyword;
 		$data['description'] = $describe;
+		$data['banner_image'] = $banner;
 
 		$result = Db::table('article')->insert($data);
 
@@ -75,6 +77,7 @@ class Article extends Controller {
 		$titlepic = input('post.titlepic');
 		$lock = input('post.visibility');
 		$id = input('post.id');
+		$banner = input('post.banner');
 
 		$data['article_name'] = $title;
 		$data['article_time'] = time();
@@ -88,6 +91,7 @@ class Article extends Controller {
 		$data['lock'] = $lock;
 		$data['keywords'] = $keyword;
 		$data['description'] = $describe;
+		$data['banner_image'] = $banner;
 
 		$result = Db::table('article')->where('article_id',$id)->update($data);
 

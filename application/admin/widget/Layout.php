@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\widget;
 use think\Controller;
+use think\Session;
 class Layout extends Controller {
 	public function menu($name) {
 		return $this->fetch('widget/menu', ['name'=>$name]);
@@ -9,6 +10,8 @@ class Layout extends Controller {
 		return $this->fetch('widget/modal');
 	}
 	public function nav () {
-		return $this->fetch('widget/nav');
+		// 获取用户名
+		$user = Session::get('username');
+		return $this->fetch('widget/nav', ['user'=>$user]);
 	}
 }

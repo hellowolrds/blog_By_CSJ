@@ -12,13 +12,13 @@
       <div class="row placeholders">
         <div class="col-xs-6 col-sm-3 placeholder">
           <h4>文章</h4>
-          <span class="text-muted">0 条</span> </div>
+          <span class="text-muted">{$article} 条</span> </div>
         <div class="col-xs-6 col-sm-3 placeholder">
           <h4>评论</h4>
           <span class="text-muted">0 条</span> </div>
         <div class="col-xs-6 col-sm-3 placeholder">
           <h4>友链</h4>
-          <span class="text-muted">0 条</span> </div>
+          <span class="text-muted">{$flink} 条</span> </div>
         <div class="col-xs-6 col-sm-3 placeholder">
           <h4>访问量</h4>
           <span class="text-muted">0</span> </div>
@@ -28,10 +28,10 @@
         <table class="table table-striped table-hover">
           <tbody>
             <tr>
-              <td>登录者: <span>admin</span>，这是您第 <span>13</span> 次登录</td>
+              <td>登录者: <span>{$username}</span>，这是您第 <span>13</span> 次登录</td>
             </tr>
             <tr>
-              <td>上次登录时间: 2016-01-08 15:50:28 , 上次登录IP: ::1:55570</td>
+              <td>本次登录时间: {$time|date='Y-m-d h:i:s',###} , 上次登录IP: ::1:55570</td>
             </tr>
           </tbody>
         </table>
@@ -45,21 +45,21 @@
           <tbody>
             <tr>
               <td>管理员个数:</td>
-              <td>2 人</td>
+              <td>{$userCount} 人</td>
               <td>服务器软件:</td>
-              <td>Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9</td>
+              <td>{$sysos}</td>
             </tr>
             <tr>
-              <td>浏览器:</td>
-              <td>Chrome47</td>
+              <td>域 名:</td>
+              <td><?php echo $_SERVER["HTTP_HOST"];?></td>
               <td>PHP版本:</td>
-              <td>5.6.1</td>
+              <td>{$sysversion}</td>
             </tr>
             <tr>
               <td>操作系统:</td>
-              <td>Windows 10</td>
+              <td><?php echo PHP_OS; ?></td>
               <td>PHP运行方式:</td>
-              <td>CGI-FCGI</td>
+              <td><?php echo php_sapi_name();?></td>
             </tr>
             <tr>
               <td>登录者IP:</td>
@@ -71,13 +71,13 @@
               <td>程序版本:</td>
               <td class="version">YlsatCMS 1.0 <font size="-6" color="#BBB">(20160108160215)</font></td>
               <td>上传文件:</td>
-              <td>可以 <font size="-6" color="#BBB">(最大文件：2M ，表单：8M )</font></td>
+              <td>最大允许上传<?php echo get_cfg_var ("upload_max_filesize")?get_cfg_var ("upload_max_filesize"):"不允许上传附件"; ?><!-- <font size="-6" color="#BBB">(最大文件：2M ，表单：8M )</font> --></td>
             </tr>
             <tr>
               <td>程序编码:</td>
               <td>UTF-8</td>
               <td>当前时间:</td>
-              <td>2016-01-08 15:50:30</td>
+              <td>{$time|date='Y-m-d h:i:s',###}</td>
             </tr>
           </tbody>
           <tfoot>

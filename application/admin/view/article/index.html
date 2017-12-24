@@ -36,7 +36,7 @@
                 <td class="hidden-sm">{$data.tags}</td>
                 <td class="hidden-sm"><img src="{$data.image_url}" style="max-width: 80px;" alt=""></td>
                 <td>{$data.article_time|date='Y-m-d h:i:s',###}</td>
-                <td><a href={:url("admin/Article/edit", ["id"=>$data.article_id])}>修改</a> <a rel="6">删除</a></td>
+                <td><a href={:url("admin/Article/edit", ["id"=>$data.article_id])}>修改</a> <a onclick="del({$data.article_id})">删除</a></td>
               </tr>
               {/volist}
             </tbody>
@@ -72,29 +72,32 @@
   </ul>
 </div>
 {include file='common:commonJs' /}
+<script src="/static/lib/layer/layer.js"></script>
 <script>
-//是否确认删除
-$(function(){   
-	$("#main table tbody tr td a").click(function(){
-		var name = $(this);
-		var id = name.attr("rel"); //对应id  
-		if (event.srcElement.outerText == "删除") 
-		{
-			if(window.confirm("此操作不可逆，是否确认？"))
-			{
-				$.ajax({
-					type: "POST",
-					url: "/Article/delete",
-					data: "id=" + id,
-					cache: false, //不缓存此页面   
-					success: function (data) {
-						window.location.reload();
-					}
-				});
-			};
-		};
-	});   
-});
+function del (id) {
+  var index = layer.open({
+    title: "疑问",
+    icon: 0,
+    content: '确认删除吗？',
+    yes: function () {
+      $.ajax({
+        url: "{:url('/admin/Article/del')}",
+        data: {
+          id: id
+        },
+        type: 'post',
+        success: function (data) {
+          layer.msg(data.msg);
+          layer.close(index);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        }
+      });
+    }
+   
+  });
+}
 </script>
 </body>
 </html>

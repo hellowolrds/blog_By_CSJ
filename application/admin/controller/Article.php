@@ -23,7 +23,7 @@ class Article extends Controller {
 		if ( !$request->isPOST() ) {
 			// 获取栏目
 			$tabs = Db::table('article_sort')->select();
-			return $this->fetch('add', ['tab'=>$tabs, 'title'=>'撰写新文章', 'url'=>"/admin/Article/add"]);
+			return $this->fetch('add', ['tab'=>$tabs, 'title'=>'撰写新文章', 'url'=>"/admin/Article/add", "time"=>time()]);
 		}
 		$title = input('post.title');
 		$content = input('post.content');
@@ -97,7 +97,18 @@ class Article extends Controller {
 		return $this->success("更新成功", "/admin/Article/index");
 	}
 
-	public function del () {
-		
+	public function del (Request $request) {
+		if ( !$request->isPOST() ) {
+			$this->error("非法操作");
+		}
+		$id = input("post.id");
+		$result = Db::table('article')->where('article_id',$id)->delete();
+		$data['flag'] = true;
+		if ( $result ) {
+			$data['msg'] = "删除成功！";
+			return $data;
+		}
+		$data['msg'] = '删除失败！';
+		return $data; 
 	}
 }

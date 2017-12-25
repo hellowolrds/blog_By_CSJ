@@ -8,7 +8,22 @@ class Blog extends Controller
     public function index()
     {
     	$blogs = Db::table('article')->select();
-    	return $this->fetch('index', ['blogs'=>$blogs]);
+        // 计算分类
+        $tabs = Db::table('article_sort')->select();
+
+        $arr = array();
+
+
+        foreach ($tabs as $key => $value) {
+            $arr[$value['sort_article_name']] = array();
+            foreach ($blogs as $k => $blog) {
+                if ( $blog['tab_id'] == $value['id'] ) {
+                    array_push($arr[$value['sort_article_name']], $blog);
+                }
+                
+            }
+        }
+    	return $this->fetch('index', ['blogs'=>$arr]);
     	
     }
 

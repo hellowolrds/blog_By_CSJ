@@ -14,7 +14,7 @@ class Article extends Controller {
 
 	public function index () {
 		$count = Db::table('article')->count();
-		$articles = Db::table('article')->join('article_sort', 'article.tab_id=article_sort.id')->paginate(2);
+		$articles = Db::table('article')->join('article_sort', 'article.tab_id=article_sort.id')->paginate(5);
 		return $this->fetch('index', ['count'=>$count, 'articles'=>$articles]);
 	}
 

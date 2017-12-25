@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="/front/js/jquery.min.js"></script>
+	<script src="/front/js/jquery.waypoints.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/front/css/animate.css">
+	<style>
+		.father {
+			width: 500px;
+			height: 200px;
+			background-color: red;
+			margin-bottom: 30px;
+		}
+		.animate-box {
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="content">
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+		<div class="father animate-box"></div>
+	</div>
+
+	<script>
+		var i = 0;
+		$(".father").waypoint(function (direct) {
+			if ( direct === 'down' ) {
+				i ++;
+				$(this.element).addClass('item-animate');
+				setTimeout(function () {
+					$(".father.item-animate").each(function (k) {
+						var el = $(this);
+						setTimeout(function () {
+							el.addClass('fadeInLeft animated');
+						}, k*200, 'easeInOutExpo');
+						el.removeClass('item-animate');
+					});
+				}, 100);
+			}
+		}, {offset: "85%"});
+	</script>
+</body>
+</html>

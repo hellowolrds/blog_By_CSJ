@@ -1,4 +1,4 @@
-	{:widget('Layout/head')}
+	{:widget('Layout/head', ['key'=>'博客,个人博客,blog','content'=>'陈少俊的个人博客',"title"=>"博客浏览"])}
 	<div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 		{:widget('Layout/menu', ['name'=>'blog'])}
@@ -6,8 +6,10 @@
 		<div id="fh5co-main">
 			<div class="fh5co-narrow-content">
 				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Read My Blog</h2>
+				{volist name="blogs" id="v"}
 				<div class="row row-bottom-padded-md">
-					{volist name="blogs" id="data"}
+					<h3 class="animate-box" data-animate-effect="fadeInRight" style="padding-left: 10px;">{$key}</h3>
+					{volist name="v" id="data"}
 					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
 						<div class="blog-entry">
 							<a href="#" class="blog-img"><img src="{$data.image_url}" class="img-responsive" alt="{$data.article_name}"></a>
@@ -21,6 +23,7 @@
 					</div>
 					{/volist}
 				</div>
+				{/volist}
 			</div>
 		</div>
 	</div>

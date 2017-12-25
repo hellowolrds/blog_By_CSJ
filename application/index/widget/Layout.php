@@ -5,8 +5,8 @@ use think\Session;
 class Layout extends Controller {
 	public function menu($name) {
 		return $this->fetch('widget/menu', ['name'=>$name]);
-	}
-	public function head() {
-		return $this->fetch('widget/head');
+	} 
+	public function head($key, $content, $title) {
+		return $this->fetch('widget/head', ['key'=>$key, 'content'=>$content, 'title'=>$title]);
 	}
 }

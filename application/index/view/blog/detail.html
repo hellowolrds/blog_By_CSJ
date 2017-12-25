@@ -1,4 +1,4 @@
-{:widget('Layout/head')}
+{:widget('Layout/head', ['key'=>$blog.keywords, 'content'=>$blog.description, 'title'=>$blog.article_name])}
 <div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 		{:widget('Layout/menu', ['name'=>'blog'])}

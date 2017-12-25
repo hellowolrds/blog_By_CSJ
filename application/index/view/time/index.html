@@ -1,0 +1,27 @@
+	{:widget('Layout/head', ['key'=>'博客,个人博客,时光轴','content'=>'记录生活的点点滴滴',"title"=>"时光墙"])}
+	<div id="fh5co-page">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		{:widget('Layout/menu', ['name'=>'time'])}
+
+		<div id="fh5co-main">
+			<div class="fh5co-narrow-content">
+				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">时光轴</h2>
+				<div class="row row-bottom-padded-md">
+					<h3 class="animate-box" data-animate-effect="fadeInRight" style="padding-left: 10px;">终将逝去的青春</h3>
+					{volist name="time" id="data"}
+					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+						<div class="blog-entry">
+							<div class="desc">
+								<h3><a href="#"><img class="img-responsive" src="{$data.time_image}" alt=""></a></h3>
+								<span><small>by Admin </small> / <small> {$data.time_time|date='Y-m-d h:i:s',###}</small></span>
+								<p>{$data.time_content}</p>
+							</div>
+						</div>
+					</div>
+					{/volist}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{include file='common:commonJs' /}

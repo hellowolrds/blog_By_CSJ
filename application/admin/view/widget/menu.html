@@ -6,7 +6,7 @@
         <li {if condition="$name eq 'article'"}class="active" {/if}><a href="{:url('admin/Article/index')}">文章</a></li>
         <li {if condition="$name eq 'notice'"}class="active" {/if}><a href="{:url('admin/Notice/index')}">公告</a></li>
         <li {if condition="$name eq 'comment'"}class="active" {/if}><a href="{:url('admin/Comment/index')}">评论</a></li>
-        <li><a data-toggle="tooltip" data-placement="bottom" title="网站暂无留言功能">留言</a></li>
+        <li {if condition="$name eq 'time'"}class="active" {/if}><a href="{:url('admin/Time/index')}">时光轴</a></li>
         <li {if condition="$name eq 'photo'"}class="active" {/if}><a href="{:url('admin/Photo/index')}">相册墙</a></li>
       </ul>
       <ul class="nav nav-sidebar">

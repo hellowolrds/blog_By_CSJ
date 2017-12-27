@@ -15,15 +15,15 @@ class Index extends Controller
         // 照片墙
         $photos = Db::table('photos')->limit(4)->select();
 
-    	// 统计访客
-    	// 获取用户ip
-		$ip = $_SERVER['REMOTE_ADDR'];
-		$time = time();
-		$visitor = '游客'.$time;
+  //   	// 统计访客
+  //   	// 获取用户ip
+		// $ip = $_SERVER['REMOTE_ADDR'];
+		// $time = time();
+		// $visitor = '游客'.$time;
 
-		$data['visitor_time'] = time();
-		$data['visitor_ip'] = $ip;
-		$data['visitor_name'] = $visitor;
+		// $data['visitor_time'] = time();
+		// $data['visitor_ip'] = $ip;
+		// $data['visitor_name'] = $visitor;
 
 		Db::table('visitor')->insert($data);
 

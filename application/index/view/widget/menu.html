@@ -7,7 +7,7 @@
 					<li {if condition="$name eq 'blog'"}class="fh5co-active"{/if}><a href="{:url('/index/blog/index')}">博客浏览</a></li>
 					<li {if condition="$name eq 'photo'"}class="fh5co-active"{/if}><a href="{:url('/index/photo/index')}">照片墙</a></li>
 					<li {if condition="$name eq 'time'"}class="fh5co-active"{/if}><a href="{:url('/index/time/index')}">时光轴</a></li>
-					<li><a href="contact.html">捐赠</a></li>
+					<li {if condition="$name eq 'show'"}class="fh5co-active"{/if}><a href="{:url('/index/time/show')}">打赏</a></li>
 				</ul>
 			</nav>
 

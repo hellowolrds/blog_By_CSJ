@@ -14,6 +14,10 @@ class Time extends Controller
     	return $this->fetch('index', ['time'=>$arr]);
     }
 
+    public function show () {
+    	return $this->fetch("show", ['time'=>time()]);
+    }
+
 	public function BubbleSort($arr) {
 	    $len = count($arr);
 	    //设置一个空数组 用来接收冒出来的泡
